@@ -24,14 +24,14 @@ const ProductDetails = () => {
   // Sample product data
   const sampleProduct = {
     id: Number.parseInt(id),
-    name: "Elegant Embroidered Kurta",
+    name: "Elegant Embroidered Kurti",
     price: 8500,
     originalPrice: 10000,
     images: [
-      "/placeholder.svg?height=600&width=500",
-      "/placeholder.svg?height=600&width=500",
-      "/placeholder.svg?height=600&width=500",
-      "/placeholder.svg?height=600&width=500",
+      "https://us.junaidjamshed.com/cdn/shop/products/JSU-23-933_3_7c1d8e11-dd1a-4b36-9887-beeab32a768a.jpg?v=1751952559",
+      "https://us.junaidjamshed.com/cdn/shop/products/JSU-23-933_2_fd9870dd-9e4c-4d36-9165-bfae0d55b539_720x.jpg?v=1751952559",
+      "https://us.junaidjamshed.com/cdn/shop/products/JSU-23-933_1_6d971254-c5b7-417c-b190-3aabb34b5fdc_720x.jpg?v=1751952559",
+      
     ],
     category: "traditional-wear",
     description:

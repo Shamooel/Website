@@ -12,30 +12,30 @@ const Home = () => {
   const featuredProducts = [
     {
       id: 1,
-      name: "Elegant Embroidered Kurta",
+      name: "Elegant Embroidered Kurti",
       price: 8500,
-      image: "/placeholder.svg?height=400&width=300",
+      image: "https://us.junaidjamshed.com/cdn/shop/products/JSU-23-933_3_7c1d8e11-dd1a-4b36-9887-beeab32a768a.jpg?v=1751952559",
       category: "traditional-wear",
     },
     {
       id: 2,
       name: "Designer Formal Dress",
       price: 12000,
-      image: "/placeholder.svg?height=400&width=300",
+      image: "https://us.junaidjamshed.com/cdn/shop/files/JSS-24-340_1.jpg?v=1751952561",
       category: "formal-wear",
     },
     {
       id: 3,
       name: "Casual Chiffon Dupatta",
       price: 3500,
-      image: "/placeholder.svg?height=400&width=300",
+      image: "https://au.junaidjamshed.com/cdn/shop/files/JWS-24-3055_1.jpg?v=1754484588",
       category: "accessories",
     },
     {
       id: 4,
       name: "Wedding Collection Lehenga",
       price: 25000,
-      image: "/placeholder.svg?height=400&width=300",
+      image: "https://i.pinimg.com/474x/03/39/93/0339931449d09a5eb85adc7c1b3780bd.jpg",
       category: "formal-wear",
     },
   ]
@@ -47,7 +47,7 @@ const Home = () => {
   const carouselSlides = [
     {
       id: 1,
-      image: "/placeholder.svg?height=600&width=1200",
+      image: "https://janan.com/cdn/shop/products/JSS-23-418_2_1800x1800.jpg?v=1741631688",
       title: "New Bridal Collection 2024",
       subtitle: "Exquisite designs for your special day",
       buttonText: "Explore Bridal",
@@ -55,7 +55,7 @@ const Home = () => {
     },
     {
       id: 2,
-      image: "/placeholder.svg?height=600&width=1200",
+      image: "https://us.junaidjamshed.com/cdn/shop/files/25-514_1.jpg?v=1751525006",
       title: "Summer Lawn Collection",
       subtitle: "Light, breezy, and beautifully crafted",
       buttonText: "Shop Lawn",
@@ -63,7 +63,7 @@ const Home = () => {
     },
     {
       id: 3,
-      image: "/placeholder.svg?height=600&width=1200",
+      image: "https://us.junaidjamshed.com/cdn/shop/files/JSS-24-336_1.jpg?v=1751952564",
       title: "Luxury Formal Wear",
       subtitle: "Elegance redefined for modern women",
       buttonText: "View Collection",
@@ -97,7 +97,7 @@ const Home = () => {
       {/* Hero Section */}
       <section className="hero-section">
         <div className="hero-background">
-          <img src="/placeholder.svg?height=800&width=1200" alt="Hero Background" className="hero-image" />
+          <img src="https://www.gulahmedshop.com/media/blog/cache/840x620/magefan_blog/Blog_Cover_2.png" alt="Hero Background" className="hero-image" />
           <div className="hero-overlay"></div>
         </div>
 
@@ -185,28 +185,28 @@ const Home = () => {
           <h2 className="section-title">{t("categories")}</h2>
           <div className="categories-grid">
             <Link to="/category/traditional-wear" className="category-card">
-              <img src="/placeholder.svg?height=300&width=400" alt="Traditional Wear" className="category-image" />
+              <img src="https://www.junaidjamshed.com/media/wysiwyg/STITCHED_36.jpg" alt="Traditional Wear" className="category-image" />
               <div className="category-overlay">
                 <h3 className="category-title">{t("traditionalWear")}</h3>
               </div>
             </Link>
 
             <Link to="/category/formal-wear" className="category-card">
-              <img src="/placeholder.svg?height=300&width=400" alt="Formal Wear" className="category-image" />
+              <img src="https://www.junaidjamshed.com/media/wysiwyg/UNSTITCHED_20.jpg" alt="Formal Wear" className="category-image" />
               <div className="category-overlay">
                 <h3 className="category-title">{t("formalWear")}</h3>
               </div>
             </Link>
 
             <Link to="/category/casual-wear" className="category-card">
-              <img src="/placeholder.svg?height=300&width=400" alt="Casual Wear" className="category-image" />
+              <img src="https://www.junaidjamshed.com/media/wysiwyg/KURTI_37.jpg" alt="Casual Wear" className="category-image" />
               <div className="category-overlay">
                 <h3 className="category-title">{t("casualWear")}</h3>
               </div>
             </Link>
 
             <Link to="/category/accessories" className="category-card">
-              <img src="/placeholder.svg?height=300&width=400" alt="Accessories" className="category-image" />
+              <img src="https://www.junaidjamshed.com/media/wysiwyg/2PCS_3.jpg" alt="Accessories" className="category-image" />
               <div className="category-overlay">
                 <h3 className="category-title">{t("accessories")}</h3>
               </div>
