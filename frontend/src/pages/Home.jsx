@@ -26,7 +26,7 @@ const Home = () => {
     },
     {
       id: 3,
-      name: "Casual Chiffon Dupatta",
+      name: "Casual Summer Kurti",
       price: 3500,
       image: "https://au.junaidjamshed.com/cdn/shop/files/JWS-24-3055_1.jpg?v=1754484588",
       category: "accessories",

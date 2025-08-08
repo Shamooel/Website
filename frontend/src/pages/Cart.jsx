@@ -52,7 +52,7 @@ const Cart = () => {
           {cartItems.map((item) => (
             <div key={`${item.id}-${item.selectedSize}-${item.selectedColor}`} className="cart-item">
               <div className="item-image">
-                <img src={item.image || "/placeholder.svg"} alt={item.name} />
+                <img src={item.image || "https://us.junaidjamshed.com/cdn/shop/products/JSU-23-933_3_7c1d8e11-dd1a-4b36-9887-beeab32a768a_720x.jpg?v=1751952559"} alt={item.name} />
               </div>
 
               <div className="item-details">
