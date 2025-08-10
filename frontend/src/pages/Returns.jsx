@@ -48,7 +48,7 @@ const Returns = () => {
       <div className="returns-hero">
         <div className="returns-hero-bg">
           <img
-            src="/placeholder.svg?height=400&width=1200"
+            src="https://2cute.pk/wp-content/uploads/2021/01/returnpolicy.jpg"
             alt="Returns"
             className="returns-hero-image"
           />

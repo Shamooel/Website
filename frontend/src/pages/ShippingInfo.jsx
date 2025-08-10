@@ -68,7 +68,7 @@ const ShippingInfo = () => {
       <div className="shipping-hero">
         <div className="shipping-hero-bg">
           <img
-            src="/placeholder.svg?height=400&width=1200"
+            src="https://media.istockphoto.com/id/544592156/photo/container-cargo-ship-and-cargo-plane-with-working-crane.jpg?s=612x612&w=0&k=20&c=t2dVqh3ACrN7kWX51BVaCIYfupK4D3D4Vwaf3C8suIk="
             alt="Shipping"
             className="shipping-hero-image"
           />
