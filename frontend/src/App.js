@@ -19,8 +19,15 @@ import Login from "./pages/Login"
 import Signup from "./pages/Signup"
 import ShippingInfo from "./pages/ShippingInfo"
 import Returns from "./pages/Returns"
+import Checkout from "./pages/Checkout" // Re-added import
+import SizeGuide from "./pages/SizeGuide" // Re-added import
+import About from "./pages/About" // Re-added import
+import Careers from "./pages/Careers" // Re-added import
+import PrivacyPolicy from "./pages/PrivacyPolicy" // Re-added import
+import TermsOfService from "./pages/TermsOfService" // Re-added import
 import "./styles/global.css"
 import "./styles/theme.css"
+import "./styles/info-page.css" // Ensure this is imported for info pages
 
 function App() {
   return (
@@ -112,6 +119,7 @@ function App() {
                       </>
                     }
                   />
+                  {/* Login and Signup pages with Navbar and Footer for consistency */}
                   <Route
                     path="/login"
                     element={
@@ -133,7 +141,7 @@ function App() {
                     }
                   />
                   <Route
-                    path="/shipping"
+                    path="/shipping-info"
                     element={
                       <>
                         <Navbar />
@@ -148,6 +156,69 @@ function App() {
                       <>
                         <Navbar />
                         <Returns />
+                        <Footer />
+                      </>
+                    }
+                  />
+                  {/* Checkout page */}
+                  <Route
+                    path="/checkout"
+                    element={
+                      <>
+                        <Navbar />
+                        <Checkout />
+                        <Footer />
+                      </>
+                    }
+                  />
+                  {/* Size Guide page */}
+                  <Route
+                    path="/size-guide"
+                    element={
+                      <>
+                        <Navbar />
+                        <SizeGuide />
+                        <Footer />
+                      </>
+                    }
+                  />
+                  {/* Footer link pages */}
+                  <Route
+                    path="/about"
+                    element={
+                      <>
+                        <Navbar />
+                        <About />
+                        <Footer />
+                      </>
+                    }
+                  />
+                  <Route
+                    path="/careers"
+                    element={
+                      <>
+                        <Navbar />
+                        <Careers />
+                        <Footer />
+                      </>
+                    }
+                  />
+                  <Route
+                    path="/privacy-policy"
+                    element={
+                      <>
+                        <Navbar />
+                        <PrivacyPolicy />
+                        <Footer />
+                      </>
+                    }
+                  />
+                  <Route
+                    path="/terms-of-service"
+                    element={
+                      <>
+                        <Navbar />
+                        <TermsOfService />
                         <Footer />
                       </>
                     }

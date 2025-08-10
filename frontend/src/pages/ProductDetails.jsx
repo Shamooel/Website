@@ -6,6 +6,9 @@ import { useCart } from "../context/CartContext"
 import { useWishlist } from "../context/WishlistContext"
 import { useLanguage } from "../context/LanguageContext"
 import ProductCard from "../components/ProductCard"
+import Modal from "../components/Modal"
+import SizeGuide from "./SizeGuide"
+import { productsData } from "../data/productsData" // Import products data
 import "./ProductDetails.css"
 
 const ProductDetails = () => {
@@ -20,90 +23,38 @@ const ProductDetails = () => {
   const [activeImageIndex, setActiveImageIndex] = useState(0)
   const [loading, setLoading] = useState(true)
   const [relatedProducts, setRelatedProducts] = useState([])
-
-  // Sample product data
-  const sampleProduct = {
-    id: Number.parseInt(id),
-    name: "Elegant Embroidered Kurti",
-    price: 8500,
-    originalPrice: 10000,
-    images: [
-      "https://us.junaidjamshed.com/cdn/shop/products/JSU-23-933_3_7c1d8e11-dd1a-4b36-9887-beeab32a768a.jpg?v=1751952559",
-      "https://us.junaidjamshed.com/cdn/shop/products/JSU-23-933_2_fd9870dd-9e4c-4d36-9165-bfae0d55b539_720x.jpg?v=1751952559",
-      "https://us.junaidjamshed.com/cdn/shop/products/JSU-23-933_1_6d971254-c5b7-417c-b190-3aabb34b5fdc_720x.jpg?v=1751952559",
-      
-    ],
-    category: "traditional-wear",
-    description:
-      "This elegant embroidered kurta features intricate handwork with gold thread embroidery. Made from premium cotton silk fabric, it offers both comfort and style. Perfect for festive occasions and special events.",
-    features: [
-      "Premium cotton silk fabric",
-      "Hand embroidered with gold thread",
-      "Comfortable regular fit",
-      "Machine washable",
-      "Available in multiple sizes",
-    ],
-    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
-    colors: [
-      { name: "Royal Blue", code: "#1e3a8a" },
-      { name: "Emerald Green", code: "#059669" },
-      { name: "Deep Purple", code: "#7c3aed" },
-      { name: "Burgundy", code: "#991b1b" },
-    ],
-    inStock: true,
-    rating: 4.8,
-    reviews: 124,
-    fabric: "Cotton Silk",
-    care: "Machine wash cold, hang dry",
-    origin: "Made in Pakistan",
-  }
-
-  const relatedProductsData = [
-    {
-      id: 101,
-      name: "Silk Saree with Gold Border",
-      price: 15000,
-      image: "/placeholder.svg?height=400&width=300",
-      category: "traditional-wear",
-    },
-    {
-      id: 102,
-      name: "Handwoven Khaddar Suit",
-      price: 7200,
-      image: "/placeholder.svg?height=400&width=300",
-      category: "traditional-wear",
-    },
-    {
-      id: 103,
-      name: "Chiffon Gharara Set",
-      price: 12500,
-      image: "/placeholder.svg?height=400&width=300",
-      category: "traditional-wear",
-    },
-    {
-      id: 104,
-      name: "Traditional Anarkali Dress",
-      price: 11000,
-      image: "/placeholder.svg?height=400&width=300",
-      category: "traditional-wear",
-    },
-  ]
+  const [isSizeGuideModalOpen, setIsSizeGuideModalOpen] = useState(false)
 
   useEffect(() => {
     setLoading(true)
-    // Simulate API call
-    setTimeout(() => {
-      setProduct(sampleProduct)
-      setRelatedProducts(relatedProductsData)
-      setSelectedColor(sampleProduct.colors[0].name)
-      setSelectedSize(sampleProduct.sizes[2]) // Default to M
-      setLoading(false)
-    }, 1000)
+    // Simulate API call by finding the product in the local data
+    const foundProduct = productsData.find((p) => p.id === id) // Ensure ID type matches (string vs number)
+
+    if (foundProduct) {
+      setProduct(foundProduct)
+      setSelectedColor(foundProduct.colors[0] || "") // Default to first available color
+      setSelectedSize(foundProduct.sizes[0] || "") // Default to first available size
+      setActiveImageIndex(0) // Reset active image
+      // Filter related products from the full dataset
+      const filteredRelated = productsData.filter(
+        (p) => p.category === foundProduct.category && p.id !== foundProduct.id,
+      )
+      setRelatedProducts(filteredRelated)
+    } else {
+      setProduct(null) // Product not found
+    }
+    setLoading(false)
   }, [id])
 
   const handleAddToCart = () => {
-    if (!selectedSize || !selectedColor) {
-      alert("Please select size and color")
+    if (!product) return
+
+    if (product.sizes && product.sizes.length > 0 && !selectedSize) {
+      alert(t("pleaseSelectSize"))
+      return
+    }
+    if (product.colors && product.colors.length > 0 && !selectedColor) {
+      alert(t("pleaseSelectColor"))
       return
     }
 
@@ -114,13 +65,17 @@ const ProductDetails = () => {
       quantity,
     }
     addToCart(productToAdd)
+    alert(t("addedToCart", { productName: product.name }))
   }
 
   const handleWishlistToggle = () => {
+    if (!product) return
     if (isInWishlist(product.id)) {
       removeFromWishlist(product.id)
+      alert(t("removedFromWishlist", { productName: product.name }))
     } else {
       addToWishlist(product)
+      alert(t("addedToWishlist", { productName: product.name }))
     }
   }
 
@@ -144,9 +99,9 @@ const ProductDetails = () => {
     return (
       <div className="product-details-container">
         <div className="product-not-found">
-          <h2>Product not found</h2>
+          <h2>{t("productNotFound")}</h2>
           <Link to="/products" className="back-to-products">
-            Back to Products
+            {t("backToProducts")}
           </Link>
         </div>
       </div>
@@ -157,7 +112,7 @@ const ProductDetails = () => {
     <div className="product-details-container">
       {/* Breadcrumb */}
       <div className="breadcrumb">
-        <Link to="/home">Home</Link>
+        <Link to="/home">{t("home")}</Link>
         <span>/</span>
         <Link to={`/category/${product.category}`}>{t(product.category.replace("-", ""))}</Link>
         <span>/</span>
@@ -205,7 +160,7 @@ const ProductDetails = () => {
               {"☆".repeat(5 - Math.floor(product.rating))}
             </div>
             <span className="rating-text">
-              {product.rating} ({product.reviews} reviews)
+              {product.rating} ({product.reviews} {t("reviews")})
             </span>
           </div>
 
@@ -222,99 +177,121 @@ const ProductDetails = () => {
           <p className="product-description">{product.description}</p>
 
           {/* Size Selection */}
-          <div className="product-options">
-            <div className="size-selection">
-              <h3>{t("size")}</h3>
-              <div className="size-options">
-                {product.sizes.map((size) => (
-                  <button
-                    key={size}
-                    className={`size-option ${selectedSize === size ? "selected" : ""}`}
-                    onClick={() => setSelectedSize(size)}
-                  >
-                    {size}
-                  </button>
-                ))}
+          {product.sizes && product.sizes.length > 0 && (
+            <div className="product-options">
+              <div className="size-selection">
+                <h3>{t("size")}</h3>
+                <div className="size-options">
+                  {product.sizes.map((size) => (
+                    <button
+                      key={size}
+                      className={`size-option ${selectedSize === size ? "selected" : ""}`}
+                      onClick={() => setSelectedSize(size)}
+                    >
+                      {size}
+                    </button>
+                  ))}
+                </div>
+                <button className="size-guide-link" onClick={() => setIsSizeGuideModalOpen(true)}>
+                  {t("sizeGuide")}
+                </button>
               </div>
             </div>
+          )}
 
-            {/* Color Selection */}
+          {/* Color Selection */}
+          {product.colors && product.colors.length > 0 && (
             <div className="color-selection">
               <h3>{t("color")}</h3>
               <div className="color-options">
                 {product.colors.map((color) => (
                   <button
-                    key={color.name}
-                    className={`color-option ${selectedColor === color.name ? "selected" : ""}`}
-                    onClick={() => setSelectedColor(color.name)}
-                    style={{ backgroundColor: color.code }}
-                    title={color.name}
+                    key={color}
+                    className={`color-option ${selectedColor === color ? "selected" : ""}`}
+                    onClick={() => setSelectedColor(color)}
+                    style={{ backgroundColor: color.toLowerCase().replace(/\s/g, "") }} // Basic color code, might need mapping for specific shades
+                    title={color}
                   />
                 ))}
               </div>
               <span className="selected-color-name">{selectedColor}</span>
             </div>
+          )}
 
-            {/* Quantity Selection */}
-            <div className="quantity-selection">
-              <h3>{t("quantity")}</h3>
-              <div className="quantity-controls">
-                <button
-                  className="quantity-btn"
-                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  disabled={quantity <= 1}
-                >
-                  -
-                </button>
-                <span className="quantity-value">{quantity}</span>
-                <button className="quantity-btn" onClick={() => setQuantity(quantity + 1)}>
-                  +
-                </button>
-              </div>
+          {/* Quantity Selection */}
+          <div className="quantity-selection">
+            <h3>{t("quantity")}</h3>
+            <div className="quantity-controls">
+              <button
+                className="quantity-btn"
+                onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                disabled={quantity <= 1}
+              >
+                -
+              </button>
+              <span className="quantity-value">{quantity}</span>
+              <button className="quantity-btn" onClick={() => setQuantity(quantity + 1)}>
+                +
+              </button>
             </div>
           </div>
 
           {/* Add to Cart Button */}
           <div className="product-actions">
             <button className="add-to-cart-btn-large" onClick={handleAddToCart} disabled={!product.inStock}>
-              {product.inStock ? t("addToCart") : "Out of Stock"}
+              {product.inStock ? t("addToCart") : t("outOfStock")}
             </button>
           </div>
 
           {/* Product Features */}
-          <div className="product-features">
-            <h3>Features</h3>
-            <ul>
-              {product.features.map((feature, index) => (
-                <li key={index}>{feature}</li>
-              ))}
-            </ul>
-          </div>
+          {product.features && product.features.length > 0 && (
+            <div className="product-features">
+              <h3>{t("features")}</h3>
+              <ul>
+                {product.features.map((feature, index) => (
+                  <li key={index}>{feature}</li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           {/* Product Details */}
           <div className="product-details-info">
-            <div className="detail-item">
-              <strong>Fabric:</strong> {product.fabric}
-            </div>
-            <div className="detail-item">
-              <strong>Care:</strong> {product.care}
-            </div>
-            <div className="detail-item">
-              <strong>Origin:</strong> {product.origin}
-            </div>
+            {product.material && (
+              <div className="detail-item">
+                <strong>{t("material")}:</strong> {product.material}
+              </div>
+            )}
+            {product.careInstructions && (
+              <div className="detail-item">
+                <strong>{t("care")}:</strong> {product.careInstructions}
+              </div>
+            )}
+            {product.origin && (
+              <div className="detail-item">
+                <strong>{t("origin")}:</strong> {product.origin}
+              </div>
+            )}
           </div>
         </div>
       </div>
 
       {/* Related Products */}
-      <div className="related-products">
-        <h2 className="section-title">Related Products</h2>
-        <div className="related-products-grid">
-          {relatedProducts.map((relatedProduct) => (
-            <ProductCard key={relatedProduct.id} product={relatedProduct} />
-          ))}
+      {relatedProducts.length > 0 && (
+        <div className="related-products">
+          <h2 className="section-title">{t("relatedProducts")}</h2>
+          <div className="related-products-grid">
+            {relatedProducts.map((relatedProduct) => (
+              <ProductCard key={relatedProduct.id} product={relatedProduct} />
+            ))}
+          </div>
         </div>
-      </div>
+      )}
+
+      {/* Size Guide Modal */}
+      <Modal isOpen={isSizeGuideModalOpen} onClose={() => setIsSizeGuideModalOpen(false)} title={t("sizeGuide")}>
+        <SizeGuide />
+      </Modal>
     </div>
   )
 }

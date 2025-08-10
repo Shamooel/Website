@@ -297,6 +297,7 @@ export const translations = {
     cart: "کارٹ",
     wishlist: "پسندیدہ",
     
+    
     // Categories
     traditionalWear: "روایتی لباس",
     formalWear: "فارمل لباس",

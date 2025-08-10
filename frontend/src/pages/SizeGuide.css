@@ -1,0 +1,167 @@
+/* SizeGuide.css */
+.size-guide-page {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border-radius: 8px;
+  box-shadow: var(--box-shadow);
+}
+
+.size-guide-container h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+}
+
+.intro-text {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--text-color-light);
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.size-chart-section {
+  margin-bottom: 50px;
+}
+
+.size-chart-section h2 {
+  font-size: 2rem;
+  color: var(--text-color-dark);
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+}
+
+.size-guide-page table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  overflow: hidden; /* Ensures rounded corners for table */
+}
+
+.size-guide-page th,
+.size-guide-page td {
+  padding: 15px;
+  border: 1px solid var(--border-color);
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.size-guide-page th {
+  background-color: var(--primary-color-light);
+  color: var(--primary-color-dark);
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.size-guide-page tbody tr:nth-child(odd) {
+  background-color: var(--input-bg);
+}
+
+.size-guide-page tbody tr:hover {
+  background-color: var(--navbar-hover-bg);
+}
+
+.how-to-measure-section {
+  margin-bottom: 50px;
+}
+
+.how-to-measure-section h2 {
+  font-size: 2rem;
+  color: var(--text-color-dark);
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.measurement-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.step-item {
+  background-color: var(--card-bg);
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: var(--box-shadow-sm);
+}
+
+.step-item h3 {
+  font-size: 1.3rem;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.step-item p {
+  font-size: 0.95rem;
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.disclaimer-text {
+  font-size: 0.85rem;
+  color: var(--text-color-light);
+  text-align: center;
+  margin-top: 40px;
+  line-height: 1.5;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .size-guide-container h1 {
+    font-size: 2rem;
+  }
+
+  .size-chart-section h2,
+  .how-to-measure-section h2 {
+    font-size: 1.8rem;
+  }
+
+  .size-guide-page th,
+  .size-guide-page td {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  .measurement-steps {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .size-guide-page {
+    padding: 15px;
+    margin: 20px auto;
+  }
+
+  .size-guide-container h1 {
+    font-size: 1.8rem;
+  }
+
+  .intro-text {
+    font-size: 1rem;
+  }
+
+  .size-chart-section h2,
+  .how-to-measure-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .step-item {
+    padding: 20px;
+  }
+
+  .step-item h3 {
+    font-size: 1.1rem;
+  }
+}

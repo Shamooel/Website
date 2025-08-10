@@ -66,7 +66,7 @@ const Login = () => {
     <div className="login-container">
       <div className="login-background">
         <img
-          src="/placeholder.svg?height=1080&width=1920"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2NJChzChw1U4govJEl43YiR8oawU4W1f9tw&s"
           alt="Khumaymi Fashion"
           className="login-bg-image"
         />
